@@ -63,49 +63,43 @@
     </section>
 
     <section>
-  <h2>Pengajuan RAB</h2>
-
-  <!-- Tombol Upload File -->
-  <div style="margin-bottom: 10px;">
-    <button class="upload-btn">
-      <i class="fa fa-upload"></i> Upload Berkas RAB
-    </button>
-  </div>
-
- <section>
-  <h2>Pengajuan RAB</h2>
-  <table>
-  <thead>
-    <tr>
-      <th>Nama Seksi</th>
-      <th class="status-col">Status</th>
-      <th>Komentar Admin</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Divisi Intelijen</td>
-      <td class="status-col"><span class="status-badge status-belum">Belum Upload</span></td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>Divisi Lalu Lintas</td>
-      <td class="status-col"><span class="status-badge status-menunggu">Menunggu</span></td>
-      <td>Menunggu verifikasi</td>
-    </tr>
-    <tr>
-      <td>Divisi Penindakan</td>
-      <td class="status-col"><span class="status-badge status-disetujui">Disetujui</span></td>
-      <td>Siap diproses</td>
-    </tr>
-    <tr>
-      <td>Divisi Perizinan</td>
-      <td class="status-col"><span class="status-badge status-ditolak">Ditolak</span></td>
-      <td>Mohon revisi anggaran</td>
-    </tr>
-  </tbody>
-</table>
+  <h2>Upload Pengajuan RAB</h2>
+  <form action="upload.php" method="POST" enctype="multipart/form-data">
+    <label>Divisi:</label>
+    <select name="divisi" required>
+      <option value="">-- Pilih Divisi --</option>
+      <option value="Divisi Intelijen">Divisi Intelijen</option>
+      <option value="Divisi Lalu Lintas">Divisi Lalu Lintas</option>
+      <option value="Divisi Penindakan">Divisi Penindakan</option>
+      <option value="Divisi Perizinan">Divisi Perizinan</option>
+      <!-- Tambahkan lainnya -->
+    </select>
+    <br><br>
+    <label>File PDF:</label>
+    <input type="file" name="file" accept="application/pdf" required />
+    <br><br>
+    <button type="submit">Upload</button>
+  </form>
 </section>
+
+<section>
+  <h2>Status Pengajuan RAB</h2>
+  <table id="statusTable">
+    <thead>
+      <tr>
+        <th>Divisi</th>
+        <th>File</th>
+        <th>Status</th>
+        <th>Komentar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Diisi oleh JavaScript -->
+    </tbody>
+  </table>
+</section>
+
+<script src="load-status.js"></script>
 
     <section>
       <h2>Struktur Organisasi</h2>

@@ -9,8 +9,11 @@
 </head>
 <body>
   <header>
+    <img src="kantor.png" alt="Header Kantor" class="header-img" />
+  <div class="header-text">
     <h1>Dashboard Admin</h1>
     <h1>Kantor Imigrasi Cilacap</h1>
+  </div>
   </header>
 
   <nav>
@@ -37,6 +40,66 @@
         </tbody>
       </table>
     </section>
+
+<section>
+  <h2>Kelola Pengajuan RAB</h2>
+  <table id="adminRAB">
+    <thead>
+      <tr>
+        <th>Divisi</th>
+        <th>File</th>
+        <th>Status</th>
+        <th>Komentar</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Akan diisi via JS -->
+    </tbody>
+  </table>
+</section>
+
+<script>
+fetch('data.json')
+  .then(res => res.json())
+  .then(data => {
+    const tbody = document.querySelector("#adminRAB tbody");
+    data.forEach((entry, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${entry.divisi}</td>
+        <td><a href="uploads/${entry.file}" target="_blank">${entry.file}</a></td>
+        <td>
+          <select onchange="updateStatus(${index}, this.value)">
+            <option ${entry.status === 'Menunggu' ? 'selected' : ''}>Menunggu</option>
+            <option ${entry.status === 'Disetujui' ? 'selected' : ''}>Disetujui</option>
+            <option ${entry.status === 'Ditolak' ? 'selected' : ''}>Ditolak</option>
+          </select>
+        </td>
+        <td><input type="text" value="${entry.komentar}" onchange="updateKomentar(${index}, this.value)" /></td>
+        <td><button onclick="saveChanges()">Simpan</button></td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    window.updateStatus = function(index, value) {
+      data[index].status = value;
+    }
+
+    window.updateKomentar = function(index, value) {
+      data[index].komentar = value;
+    }
+
+    window.saveChanges = function() {
+      fetch('update_status.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(() => alert('Status berhasil diperbarui!'));
+    }
+  });
+</script>
+
 
     <!-- Upload Struktur Organisasi -->
     <section>
