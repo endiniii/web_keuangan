@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - KANCIL AKURAT</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Dashboard Admin</h1>
+    <h1>Kantor Imigrasi Cilacap</h1>
+  </header>
+
+  <nav>
+    <div class="logo">
+      <img src="logo-imigrasi.png" alt="Logo Imigrasi" />
+      <span>Admin Panel - Kantor Imigrasi Kelas I TPI Cilacap</span>
+    </div>
+    <div>
+      <a href="#" id="logoutBtn"><i class="fa fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Kelola Realisasi Anggaran -->
+    <section>
+      <h2>Kelola Realisasi Anggaran</h2>
+      <button onclick="tambahData()">+ Tambah Data</button>
+      <table id="tabelAnggaran">
+        <thead>
+          <tr><th>Divisi</th><th>Sisa Saldo</th><th>Aksi</th></tr>
+        </thead>
+        <tbody id="anggaranBody">
+          <!-- Data akan ditambahkan via JavaScript -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Upload Struktur Organisasi -->
+    <section>
+      <h2>Upload Struktur Organisasi</h2>
+      <form id="uploadForm">
+        <input type="file" id="strukturInput" accept="image/*" />
+        <button type="submit"><i class="fa fa-upload"></i> Upload</button>
+      </form>
+      <div>
+        <img id="previewStruktur" src="strukturkancil.png" alt="Struktur Organisasi" class="organisasi" />
+      </div>
+    </section>
+
+    <!-- Upload Rencana RPD -->
+    <section>
+      <h2>Upload Rencana RPD</h2>
+      <form id="rpdForm">
+        <input type="file" id="rpdInput" accept="application/pdf" />
+        <button type="submit"><i class="fa fa-upload"></i> Upload</button>
+      </form>
+      <div id="rpdInfo">
+        <p id="rpdFileName">Belum ada file RPD yang diunggah.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Kantor Imigrasi Kelas I TPI Cilacap - Admin</p>
+  </footer>
+
+  <script src="admin.js"></script>
+</body>
+</html>
