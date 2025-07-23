@@ -42,6 +42,43 @@
 
     </section>
 
+<section>
+  <h2>Anggaran Rencana Kerja</h2>
+  <!-- Dropdown filter bulan -->
+  <label for="filterBulan">Pilih Bulan:</label>
+  <select id="filterBulan">
+    <option value="Semua">Semua</option>
+    <option value="Januari">Januari</option>
+    <option value="Februari">Februari</option>
+    <option value="Maret">Maret</option>
+    <option value="April">April</option>
+    <option value="Mei">Mei</option>
+    <option value="Juni">Juni</option>
+    <option value="Juli">Juli</option>
+    <option value="Agustus">Agustus</option>
+    <option value="September">September</option>
+    <option value="Oktober">Oktober</option>
+    <option value="November">November</option>
+    <option value="Desember">Desember</option>
+  </select>
+  <table id="tabelRencanaUser">
+    <thead>
+      <tr>
+        <th>Seksi</th>
+        <th>Bulan</th>
+        <th>Saldo Tahunan</th>
+        <th>Minggu 1</th>
+        <th>Minggu 2</th>
+        <th>Minggu 3</th>
+        <th>Minggu 4</th>
+        <th>Sisa Saldo Bulan</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+
     <section>
       <h2>Struktur Organisasi</h2>
       <img src="strukturkancil.png" alt="Struktur Organisasi" class="organisasi" />
@@ -64,16 +101,52 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     let tabelBody = document.querySelector("#tabelRealisasiUser tbody");
-    let dataRealisasi = JSON.parse(localStorage.getItem("realisasiAnggaran")) || [];
+    let dataAnggaran = JSON.parse(localStorage.getItem("dataAnggaran")) || [];
 
-    dataRealisasi.forEach(item => {
+    dataAnggaran.forEach(item => {
       let row = document.createElement("tr");
       row.innerHTML = `
-        <td>${item.kegiatan}</td>
-        <td>${item.realisasi}</td>
-        <td>${item.tanggal}</td>
+        <td>${item.divisi}</td>
+        <td>${item.saldo}</td>
+        <td>${item.link ? `<a href="${item.link}" target="_blank">Lihat</a>` : '-'}</td>
       `;
       tabelBody.appendChild(row);
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const tabelBody = document.querySelector("#tabelRencanaUser tbody");
+    const filterBulan = document.getElementById("filterBulan");
+    const dataRencana = JSON.parse(localStorage.getItem("dataRencana")) || [];
+
+    function tampilkanDataRencana(filter) {
+      tabelBody.innerHTML = ""; // Kosongkan dulu
+      const dataFilter = filter === "Semua" ? dataRencana : dataRencana.filter(item => item.bulan === filter);
+
+      dataFilter.forEach(item => {
+        let row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.seksi}</td>
+          <td>${item.bulan}</td>
+          <td>${item.saldoTahunan}</td>
+          <td>${item.minggu1}</td>
+          <td>${item.minggu2}</td>
+          <td>${item.minggu3}</td>
+          <td>${item.minggu4}</td>
+          <td>${item.sisaSaldo}</td>
+        `;
+        tabelBody.appendChild(row);
+      });
+    }
+
+    // Tampilkan semua data saat pertama kali
+    tampilkanDataRencana("Semua");
+
+    // Saat dropdown berubah
+    filterBulan.addEventListener("change", function () {
+      tampilkanDataRencana(this.value);
     });
   });
 </script>
