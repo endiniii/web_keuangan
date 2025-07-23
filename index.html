@@ -31,7 +31,7 @@
       <h2>Realisasi Anggaran Per Divisi</h2>
       <table>
         <thead>
-          <tr><th>Divisi</th><th>Sisa Saldo</th></tr>
+          <tr><th>Divisi</th><th>Sisa Anggaran</th></tr>
         </thead>
         <tbody>
           <tr>
@@ -63,50 +63,11 @@
     </section>
 
     <section>
-  <h2>Upload Pengajuan RAB</h2>
-  <form action="upload.php" method="POST" enctype="multipart/form-data">
-    <label>Divisi:</label>
-    <select name="divisi" required>
-      <option value="">-- Pilih Divisi --</option>
-      <option value="Divisi Intelijen">Divisi Intelijen</option>
-      <option value="Divisi Lalu Lintas">Divisi Lalu Lintas</option>
-      <option value="Divisi Penindakan">Divisi Penindakan</option>
-      <option value="Divisi Perizinan">Divisi Perizinan</option>
-      <!-- Tambahkan lainnya -->
-    </select>
-    <br><br>
-    <label>File PDF:</label>
-    <input type="file" name="file" accept="application/pdf" required />
-    <br><br>
-    <button type="submit">Upload</button>
-  </form>
-</section>
-
-<section>
-  <h2>Status Pengajuan RAB</h2>
-  <table id="statusTable">
-    <thead>
-      <tr>
-        <th>Divisi</th>
-        <th>File</th>
-        <th>Status</th>
-        <th>Komentar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Diisi oleh JavaScript -->
-    </tbody>
-  </table>
-</section>
-
-<script src="load-status.js"></script>
-
-    <section>
       <h2>Struktur Organisasi</h2>
       <img src="strukturkancil.png" alt="Struktur Organisasi" class="organisasi" />
     </section>
     <section>
-      <h2>Rencana RPD</h2>
+      <h2>Rencana DIPA</h2>
       <a href="uploads/rpd.pdf" class="rpd-link" target="_blank">
         <i class="fa fa-file-pdf"></i> Lihat RPD (PDF)
       </a>
