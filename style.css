@@ -234,36 +234,20 @@ table {
   vertical-align: middle;
 }
 
-td.status-col, th.status-col {
-  text-align: center; /* hanya kolom status yang tengah */
+form#formRencana input {
+  margin: 5px;
+  padding: 5px;
+}
+form#formRencana button {
+  margin-top: 10px;
+}
+table {
+  margin-top: 15px;
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
 }
 
-.status-badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  white-space: nowrap;
-  min-width: 100px;
-}
 
-.status-belum {
-  background-color: #adb5bd; /* Abu */
-  color: white;
-}
-
-.status-menunggu {
-  background-color: #ffc107; /* Kuning */
-  color: black;
-}
-
-.status-disetujui {
-  background-color: #198754; /* Hijau Imigrasi */
-  color: white;
-}
-
-.status-ditolak {
-  background-color: #dc3545; /* Merah */
-  color: white;
-}

@@ -27,79 +27,87 @@
   </nav>
 
   <main>
-    <!-- Kelola Realisasi Anggaran -->
-    <section>
-      <h2>Kelola Realisasi Anggaran</h2>
-      <button onclick="tambahData()">+ Tambah Data</button>
-      <table id="tabelAnggaran">
-        <thead>
-          <tr><th>Divisi</th><th>Sisa Saldo</th><th>Aksi</th></tr>
-        </thead>
-        <tbody id="anggaranBody">
-          <!-- Data akan ditambahkan via JavaScript -->
-        </tbody>
-      </table>
-    </section>
-
+   <!-- Kelola Realisasi Anggaran -->
 <section>
-  <h2>Kelola Pengajuan RAB</h2>
-  <table id="adminRAB">
+  <h2>Kelola Realisasi Anggaran</h2>
+
+  <!-- Form Tambah Anggaran -->
+  <form id="formAnggaran" onsubmit="tambahAnggaran(event)">
+    <input type="text" id="divisiInput" placeholder="Nama Seksi" required />
+    <input type="text" id="saldoInput" placeholder="Sisa Saldo (misal: 10000000)" required />
+    <button type="submit">Tambah Anggaran</button>
+  </form>
+
+  <!-- Tabel Anggaran -->
+  <table id="tabelAnggaran">
     <thead>
       <tr>
-        <th>Divisi</th>
-        <th>File</th>
-        <th>Status</th>
-        <th>Komentar</th>
+        <th>Seksi</th>
+        <th>Sisa Saldo</th>
         <th>Aksi</th>
       </tr>
     </thead>
-    <tbody>
-      <!-- Akan diisi via JS -->
+    <tbody id="anggaranBody">
+      <!-- Data akan ditambahkan via JavaScript -->
     </tbody>
   </table>
 </section>
 
-<script>
-fetch('data.json')
-  .then(res => res.json())
-  .then(data => {
-    const tbody = document.querySelector("#adminRAB tbody");
-    data.forEach((entry, index) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${entry.divisi}</td>
-        <td><a href="uploads/${entry.file}" target="_blank">${entry.file}</a></td>
-        <td>
-          <select onchange="updateStatus(${index}, this.value)">
-            <option ${entry.status === 'Menunggu' ? 'selected' : ''}>Menunggu</option>
-            <option ${entry.status === 'Disetujui' ? 'selected' : ''}>Disetujui</option>
-            <option ${entry.status === 'Ditolak' ? 'selected' : ''}>Ditolak</option>
-          </select>
-        </td>
-        <td><input type="text" value="${entry.komentar}" onchange="updateKomentar(${index}, this.value)" /></td>
-        <td><button onclick="saveChanges()">Simpan</button></td>
-      `;
-      tbody.appendChild(row);
-    });
 
-    window.updateStatus = function(index, value) {
-      data[index].status = value;
-    }
 
-    window.updateKomentar = function(index, value) {
-      data[index].komentar = value;
-    }
+    <!-- Anggaran Rencana Kerja -->
+<section>
+  <h2>Anggaran Rencana Kerja</h2>
 
-    window.saveChanges = function() {
-      fetch('update_status.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(() => alert('Status berhasil diperbarui!'));
-    }
-  });
-</script>
+  <!-- Pilih Bulan -->
+  <label for="bulanSelect">Pilih Bulan:</label>
+  <select id="bulanSelect" onchange="filterBulan()">
+    <option value="Januari">Januari</option>
+    <option value="Februari">Februari</option>
+    <option value="Maret">Maret</option>
+    <option value="April">April</option>
+    <option value="Mei">Mei</option>
+    <option value="Juni">Juni</option>
+    <option value="Juli">Juli</option>
+    <option value="Agustus">Agustus</option>
+    <option value="September">September</option>
+    <option value="Oktober">Oktober</option>
+    <option value="November">November</option>
+    <option value="Desember">Desember</option>
+  </select>
 
+<!-- Form Tambah Rencana Kerja -->
+<form id="formRencana" onsubmit="tambahRencanaKerja(event)">
+  <input type="text" id="seksiInput" placeholder="Nama Seksi" required />
+  <input type="number" id="saldoTahunanInput" placeholder="Saldo Tahunan" required />
+  <input type="number" id="minggu1Input" placeholder="Minggu 1" required />
+  <input type="number" id="minggu2Input" placeholder="Minggu 2" required />
+  <input type="number" id="minggu3Input" placeholder="Minggu 3" required />
+  <input type="number" id="minggu4Input" placeholder="Minggu 4" required />
+  <input type="number" id="sisaSaldoInput" placeholder="Sisa Saldo Bulan" required />
+  <button type="submit">Tambah Rencana</button>
+</form>
+
+  <!-- Tabel Anggaran -->
+  <table id="tabelRencanaKerja">
+   <thead>
+      <tr>
+        <th>Nama Seksi</th>
+        <th>Saldo Tahunan</th>
+        <th>Minggu 1</th>
+        <th>Minggu 2</th>
+        <th>Minggu 3</th>
+        <th>Minggu 4</th>
+        <th>Sisa Saldo Bulan</th>
+        <th>Bulan</th>
+        <th>Aksi</th> 
+      </tr>
+    </thead>
+    <tbody id="rencanaBody">
+      <!-- Data ditambahkan via JavaScript -->
+    </tbody>
+  </table>
+</section>
 
     <!-- Upload Struktur Organisasi -->
     <section>
