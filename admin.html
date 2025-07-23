@@ -34,7 +34,8 @@
   <!-- Form Tambah Anggaran -->
   <form id="formAnggaran" onsubmit="tambahAnggaran(event)">
     <input type="text" id="divisiInput" placeholder="Nama Seksi" required />
-    <input type="text" id="saldoInput" placeholder="Sisa Saldo (misal: 10000000)" required />
+    <input type="text" id="saldoInput" placeholder="Sisa Anggaran (misal: 10000000)" required />
+    <input type="url" id="linkInput" placeholder="Link Spreadsheet" />
     <button type="submit">Tambah Anggaran</button>
   </form>
 
@@ -43,7 +44,8 @@
     <thead>
       <tr>
         <th>Seksi</th>
-        <th>Sisa Saldo</th>
+        <th>Sisa Anggaran</th>
+        <th>Link Spreadsheet</th>
         <th>Aksi</th>
       </tr>
     </thead>

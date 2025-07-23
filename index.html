@@ -29,37 +29,17 @@
   <main>
     <section>
       <h2>Realisasi Anggaran Per Divisi</h2>
-      <table>
-        <thead>
-          <tr><th>Divisi</th><th>Sisa Anggaran</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><a href="https://docs.google.com/spreadsheets/d/ID_DIVISI_UMUM" target="_blank">Divisi Umum</a></td>
-            <td>Rp 25.000.000</td>
-          </tr>
-          <tr>
-            <td><a href="https://docs.google.com/spreadsheets/d/ID_LANTASKIM" target="_blank">Divisi Lalu Lintas Keimigrasian</a></td>
-            <td>Rp 18.500.000</td>
-          </tr>
-          <tr>
-            <td><a href="https://docs.google.com/spreadsheets/d/ID_INTELIJEN" target="_blank">Divisi Intelijen</a></td>
-            <td>Rp 12.300.000</td>
-          </tr>
-          <tr>
-            <td><a href="https://docs.google.com/spreadsheets/d/ID_TIK" target="_blank">Divisi Teknologi Informasi</a></td>
-            <td>Rp 22.100.000</td>
-          </tr>
-          <tr>
-            <td><a href="https://docs.google.com/spreadsheets/d/ID_PENINDAKAN" target="_blank">Divisi Penindakan</a></td>
-            <td>Rp 19.400.000</td>
-          </tr>
-          <tr>
-            <td><a href="https://docs.google.com/spreadsheets/d/ID_PELAYANAN" target="_blank">Divisi Pelayanan dan Verifikasi</a></td>
-            <td>Rp 27.800.000</td>
-          </tr>
-        </tbody>
-      </table>
+      <table id="tabelRealisasiUser">
+  <thead>
+    <tr>
+      <th>Nama Seksi</th>
+      <th>Sisa Anggaran</th>
+      <th>Lihat Spreadsheet</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
     </section>
 
     <section>
@@ -79,3 +59,22 @@
   </footer>
 </body>
 </html>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let tabelBody = document.querySelector("#tabelRealisasiUser tbody");
+    let dataRealisasi = JSON.parse(localStorage.getItem("realisasiAnggaran")) || [];
+
+    dataRealisasi.forEach(item => {
+      let row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${item.kegiatan}</td>
+        <td>${item.realisasi}</td>
+        <td>${item.tanggal}</td>
+      `;
+      tabelBody.appendChild(row);
+    });
+  });
+</script>
+

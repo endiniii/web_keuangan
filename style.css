@@ -19,6 +19,7 @@ header {
   height: 250px;
   object-fit: cover;
   filter: brightness(60%);
+  display: block;
 }
 
 .header-text {

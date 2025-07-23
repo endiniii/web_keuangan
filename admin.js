@@ -28,6 +28,7 @@ function renderTabel() {
     row.innerHTML = `
       <td>${item.divisi}</td>
       <td>${item.saldo}</td>
+      <td>${item.link ? `<a href="${item.link}" target="_blank">Lihat</a>` : '-'}</td>
       <td>
         <button onclick="editData(${index})"><i class="fa fa-edit"></i> Edit</button>
         <button onclick="hapusData(${index})"><i class="fa fa-trash"></i> Hapus</button>
@@ -51,9 +52,10 @@ function tambahAnggaran(event) {
 
   const divisi = document.getElementById("divisiInput").value;
   const saldo = document.getElementById("saldoInput").value;
+  const link = document.getElementById("linkInput").value;
 
   if (divisi && saldo) {
-    const dataBaru = { divisi, saldo: formatRupiah(saldo) };
+    const dataBaru = { divisi, saldo: formatRupiah(saldo), link};
 
     if (isEditModeAnggaran && editIndexAnggaran !== null) {
       dataAnggaran[editIndexAnggaran] = dataBaru;
@@ -79,6 +81,8 @@ function editData(index) {
 
   document.getElementById("divisiInput").value = item.divisi;
   document.getElementById("saldoInput").value = item.saldo.replace(/[^\d]/g, "");
+  document.getElementById("linkInput").value = item.link || "";
+
 
   isEditModeAnggaran = true;
   editIndexAnggaran = index;
@@ -272,3 +276,4 @@ function formatRupiah(angka) {
     minimumFractionDigits: 0
   }).format(angka);
 }
+
