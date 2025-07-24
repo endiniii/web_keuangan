@@ -7,14 +7,8 @@ document.getElementById("logoutBtn").addEventListener("click", function () {
   window.location.href = "index.html";
 });
 
-// // ===========================
-// // Data Dummy Realisasi Anggaran (bisa diganti dengan fetch dari Google Spreadsheet atau backend nantinya)
-// // ===========================
-let dataAnggaran = JSON.parse(localStorage.getItem("dataAnggaran")) || [
-  { divisi: "Tata Usaha", saldo: "Rp 10.000.000" },
-  { divisi: "Intelijen Keimigrasian", saldo: "Rp 8.500.000" },
-  { divisi: "Lalu Lintas Keimigrasian", saldo: "Rp 6.750.000" }
-];
+let dataAnggaran = JSON.parse(localStorage.getItem("dataAnggaran")) || [];
+
 
 // ===========================
 // Render Tabel Anggaran
